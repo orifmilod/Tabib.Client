@@ -1,13 +1,9 @@
-import type { Metadata } from 'next'
+"use client"
 import { Inter } from 'next/font/google'
 import './globals.css'
+import theme from '../theme'
+import { ThemeProvider } from '@emotion/react'
 
-const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Tabib',
-  description: 'Tabib',
-}
 
 export default function RootLayout({
   children,
@@ -15,8 +11,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    <ThemeProvider theme={theme}>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body >{children}</body>
     </html>
+    </ThemeProvider>
   )
 }
