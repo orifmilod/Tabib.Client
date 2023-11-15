@@ -1,8 +1,10 @@
 "use client"
-import { Inter } from 'next/font/google'
 import './globals.css'
 import theme from '../theme'
 import { ThemeProvider } from '@emotion/react'
+
+import { Provider } from 'react-redux'
+import { reduxStore } from 'src/redux/store'
 
 
 export default function RootLayout({
@@ -12,9 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <ThemeProvider theme={theme}>
-    <html lang="en">
-      <body >{children}</body>
-    </html>
-    </ThemeProvider>
+        <Provider store={reduxStore}>
+          <html lang="en">
+            <body >{children}</body>
+          </html>
+        </Provider>
+      </ThemeProvider>
   )
 }
