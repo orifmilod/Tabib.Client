@@ -1,24 +1,32 @@
-"use client"
-import './globals.css'
-import theme from '../theme'
-import { ThemeProvider } from '@emotion/react'
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import UiProvider from '@/lib/UiProvider';
+import NavBarComponent from '@/components/NavBarComponent';
+import ReduxProvider from '@/redux/provider';
 
-import { Provider } from 'react-redux'
-import { reduxStore } from 'src/redux/store'
+const inter = Inter({ subsets: ['latin'] });
 
+export const metadata: Metadata = {
+  title: 'ToDo App',
+  description: 'Created Using Next.js 14 and Next UI',
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <ThemeProvider theme={theme}>
-        <Provider store={reduxStore}>
-          <html lang="en">
-            <body >{children}</body>
-          </html>
-        </Provider>
-      </ThemeProvider>
-  )
+    <html lang="en">
+      <body className={inter.className}>
+        <ReduxProvider>
+          <UiProvider>
+            <NavBarComponent />
+            <main>{children}</main>
+          </UiProvider>
+        </ReduxProvider>
+      </body>
+    </html>
+  );
 }
