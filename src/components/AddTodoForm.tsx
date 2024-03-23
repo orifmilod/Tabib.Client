@@ -9,11 +9,11 @@ import {
 } from '@nextui-org/react';
 import { Input } from '@nextui-org/react';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/redux/store';
+import { ReduxDispatch } from '@/redux/store';
 import { addTodo } from '@/redux/features/todo-slice';
 
 const AddTodoForm: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<ReduxDispatch>();
   const [todo, setTodo] = useState<string>();
   const [isInvalid, setIsInvalid] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>();
